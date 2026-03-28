@@ -1,14 +1,3 @@
-// const Login = () => {
-//     return ( 
-//         <>
-        
-//         </>
-//      );
-// }
- 
-// export default Login;
-
-
 import { useState } from "react";
 
 function Login() {
@@ -17,6 +6,8 @@ function Login() {
     email: "",
     age: ""
   });
+
+  const [user, setUser] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,15 +21,16 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const existingData = JSON.parse(localStorage.getItem("users")) || [];
+    const newUser = {
+      name: formData.name,
+      email: formData.email,
+      age: formData.age
+    };
 
-    const updatedData = [...existingData, formData];
+    // overwrite previous user
+    setUser(newUser);
+    localStorage.setItem("user", JSON.stringify(newUser));
 
-    localStorage.setItem("users", JSON.stringify(updatedData));
-
-    console.log("Saved:", updatedData);
-
-    // Clear form
     setFormData({
       name: "",
       email: "",
@@ -51,41 +43,46 @@ function Login() {
       <h2>Login Form</h2>
 
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label><br />
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </div>
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={formData.name}
+          onChange={handleChange}
+        /><br></br><br></br>
 
-        <div>
-          <label>Email:</label><br />
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+        /><br></br><br></br>
 
-        <div>
-          <label>Age:</label><br />
-          <input
-            type="number"
-            name="age"
-            value={formData.age}
-            onChange={handleChange}
-          />
-        </div>
+        <input
+          type="number"
+          name="age"
+          placeholder="Age"
+          value={formData.age}
+          onChange={handleChange}
+        /><br></br><br></br>
 
-        <br />
         <button type="submit">Save</button>
       </form>
+
+      {user && (
+        <div>
+          <h3>Saved User</h3>
+          <p>{user.name}</p>
+          <p>{user.email}</p>
+          <p>{user.age}</p>
+        </div>
+      )}
     </div>
   );
 }
 
 export default Login;
+
+
+
