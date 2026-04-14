@@ -88,8 +88,10 @@
 
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
@@ -150,6 +152,11 @@ function Login() {
           <p>{user.age}</p>
         </div>
       )}
+
+    <br></br>
+    <button onClick={() => navigate("/dashboard")}>
+      Go to Dashboard
+    </button>
     </div>
   );
 }
