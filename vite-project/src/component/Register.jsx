@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Register() {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -11,44 +11,49 @@ function Login() {
 
   const [message, setMessage] = useState("");
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    // ❌ Check empty fields
+    // Check empty fields
     if (!name || !email || !age || !password) {
-      setMessage("Fill all inputs");
+      setMessage("Fill all inputs to be completely registered");
       return;
     }
 
-    // ✅ Get registered users
+    // ❌ Check password has a number
+    const hasNumber = /\d/.test(password);
+    if (!hasNumber) {
+      setMessage("Password must contain at least one number");
+      return;
+    }
+
+    const newUser = { name, email, age, password };
+
+    // ✅ Get old users or empty array
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    // ✅ Check if user exists
-    const foundUser = users.find(
-      (user) =>
-        user.name === name &&
-        user.email === email &&
-        user.age === age &&
-        user.password === password
-    );
+    // ✅ Add new user
+    users.push(newUser);
 
-    if (foundUser) {
-      // ✅ Save current logged-in user
-      localStorage.setItem("user", JSON.stringify(foundUser));
+    // ✅ Save back
+    localStorage.setItem("users", JSON.stringify(users));
 
-      // ✅ Go to dashboard
-      navigate("/dashboard");
-    } else {
-      setMessage("Input is invalid!!");
-    }
+    // ✅ Success message
+    setMessage("You have successfully registered ✅");
+
+    // Clear inputs
+    setName("");
+    setEmail("");
+    setAge("");
+    setPassword("");
   };
 
   return (
-     <div className="container">
+    <div className="container">
     <div className="card">
-      <h2>Login</h2>
+      <h2>Registration Form</h2>
 
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Name"
@@ -77,19 +82,20 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit">Login</button>
+        <button type="submit">Save</button>
       </form>
 
       {/* ✅ Show message */}
       {message && <p>{message}</p>}
 
-      <p>
-        Don't have an account?{" "}
-        <Link to="/register">Sign Up</Link>
-      </p>
+      <br />
+
+      <button onClick={() => navigate("/login")}>
+        Go to Dashboard
+      </button>
     </div>
     </div>
   );
 }
 
-export default Login;
+export default Register;
