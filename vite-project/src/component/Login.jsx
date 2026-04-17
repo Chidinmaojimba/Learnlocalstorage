@@ -4,9 +4,8 @@ import { useNavigate, Link } from "react-router-dom";
 function Login() {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
+  
   const [email, setEmail] = useState("");
-  const [age, setAge] = useState("");
   const [password, setPassword] = useState("");
 
   const [message, setMessage] = useState("");
@@ -14,29 +13,24 @@ function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // ❌ Check empty fields
-    if (!name || !email || !age || !password) {
+   
+    if (  !email || !password) {
       setMessage("Fill all inputs");
       return;
     }
 
-    // ✅ Get registered users
+    
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    // ✅ Check if user exists
+   
     const foundUser = users.find(
       (user) =>
-        user.name === name &&
         user.email === email &&
-        user.age === age &&
         user.password === password
     );
 
-    if (foundUser) {
-      // ✅ Save current logged-in user
+    if (foundUser) {        
       localStorage.setItem("user", JSON.stringify(foundUser));
-
-      // ✅ Go to dashboard
       navigate("/dashboard");
     } else {
       setMessage("Input is invalid!!");
@@ -45,17 +39,11 @@ function Login() {
 
   return (
      <div className="container">
+      <Navigation />
     <div className="card">
       <h2>Login</h2>
 
       <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-
         <input
           type="email"
           placeholder="Email"
@@ -63,12 +51,6 @@ function Login() {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <input
-          type="number"
-          placeholder="Age"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-        />
 
         <input
           type="password"
@@ -80,12 +62,12 @@ function Login() {
         <button type="submit">Login</button>
       </form>
 
-      {/* ✅ Show message */}
+     
       {message && <p>{message}</p>}
 
       <p>
         Don't have an account?{" "}
-        <Link to="/register">Sign Up</Link>
+        <Link to="/">Sign Up</Link>
       </p>
     </div>
     </div>

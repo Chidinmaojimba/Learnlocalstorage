@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navigation from "./Navigation";
 
 function Register() {
   const navigate = useNavigate();
@@ -14,43 +15,45 @@ function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check empty fields
+    
     if (!name || !email || !age || !password) {
       setMessage("Fill all inputs to be completely registered");
       return;
     }
 
-    // ❌ Check password has a number
+   
     const hasNumber = /\d/.test(password);
     if (!hasNumber) {
       setMessage("Password must contain at least one number");
       return;
     }
 
-    const newUser = { name, email, age, password };
+    const newUser = { name:name.trim(), email:email.trim(), age:age.trim(), password:password.trim() };
 
-    // ✅ Get old users or empty array
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    
+    const users = JSON.parse(localStorage.getItem("users")) || [];  
 
-    // ✅ Add new user
-    users.push(newUser);
+    
+    users.push(newUser);  
 
-    // ✅ Save back
-    localStorage.setItem("users", JSON.stringify(users));
+    
+    localStorage.setItem("users", JSON.stringify(users)); 
 
-    // ✅ Success message
-    setMessage("You have successfully registered ✅");
+    
+    setMessage("You have successfully registered "); 
 
-    // Clear inputs
+    
     setName("");
     setEmail("");
     setAge("");
-    setPassword("");
+    setPassword(""); 
   };
 
   return (
     <div className="container">
+      <Navigation />
     <div className="card">
+     
       <h2>Registration Form</h2>
 
       <form onSubmit={handleSubmit}>
@@ -85,7 +88,7 @@ function Register() {
         <button type="submit">Save</button>
       </form>
 
-      {/* ✅ Show message */}
+     
       {message && <p>{message}</p>}
 
       <br />
