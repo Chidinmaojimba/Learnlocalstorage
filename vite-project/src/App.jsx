@@ -22,7 +22,7 @@ import Register from "./component/Register";
 import Dashboard from "./component/Dashboard";  
 import Login from "./component/Login";
 import RegisteredUsers from "./component/RegisteredUsers";
-//import Navigation from "./component/Navigation";
+import CreateUser from "./component/CreateUser";
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registeredUsers" element={<RegisteredUsers />} /> 
-        {/* <Route path="/navigation" element={<Navigation />} /> */}
+        <Route path="/createUser" element={<CreateUser />} />
 
       </Routes>
    

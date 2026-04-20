@@ -59,3 +59,74 @@
 .table-RU th {
   font-size: 14px;
 }
+
+
+
+
+
+
+
+
+
+
+/* Create Button */
+.create-btn {
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  background: #4facfe;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.create-btn:hover {
+  background: #3a8de0;
+}
+
+/* Actions container */
+.actions {
+  display: flex;
+  gap: 5px;
+}
+
+/* Edit button */
+.edit-btn {
+  background: #ffc107;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background: #e0a800;
+}
+
+/* Delete button */
+.delete-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #b02a37;
+}
+
+/* Save button */
+.save-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background: #218838;
+}
