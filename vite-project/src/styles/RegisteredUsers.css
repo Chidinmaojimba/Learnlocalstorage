@@ -1,4 +1,4 @@
-/* Container for Registered Users */
+
 .container-RU {
   min-height: 100vh;
   display: flex;
@@ -7,7 +7,7 @@
   background: linear-gradient(135deg, #020508, #00f2fe);
 }
 
-/* Card */
+
 .card-RU {
   background: white;
   padding: 30px;
@@ -17,20 +17,20 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* Title */
+
 .card-RU h2 {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
 }
 
-/* Table */
+
 .table-RU {
   width: 100%;
   border-collapse: collapse;
 }
 
-/* Header */
+
 .table-RU th {
   background: linear-gradient(135deg, #020508, #00f2fe);
   color: white;
@@ -38,23 +38,22 @@
   text-align: left;
 }
 
-/* Rows */
 .table-RU td {
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
 
-/* Zebra stripes */
+
 .table-RU tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-/* Hover effect */
+
 .table-RU tr:hover {
   background-color: #f1f1f1;
 }
 
-/* Responsive text */
+
 .table-RU td,
 .table-RU th {
   font-size: 14px;
@@ -69,7 +68,7 @@
 
 
 
-/* Create Button */
+
 .create-btn {
   margin-bottom: 15px;
   padding: 10px 15px;
@@ -84,13 +83,13 @@
   background: #3a8de0;
 }
 
-/* Actions container */
+
 .actions {
   display: flex;
   gap: 5px;
 }
 
-/* Edit button */
+
 .edit-btn {
   background: #ffc107;
   border: none;
@@ -117,7 +116,7 @@
   background: #b02a37;
 }
 
-/* Save button */
+
 .save-btn {
   background: #28a745;
   color: white;

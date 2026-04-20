@@ -6,7 +6,7 @@ function Dashboard() {
   const navigate = useNavigate();
 
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user"))//  Get user directly from localStorage
+    JSON.parse(localStorage.getItem("user"))
   );
 
   //  Protect page

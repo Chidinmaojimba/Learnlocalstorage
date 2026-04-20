@@ -26,13 +26,13 @@ function RegisteredUsers() {
     localStorage.setItem("users", JSON.stringify(updated));
   };
 
-  // ✏️ EDIT START
+ 
   const handleEdit = (index) => {
     setEditIndex(index);
     setEditUser(users[index]);
   };
 
-  // ✅ SAVE EDIT
+  
   const handleSave = () => {
     const updated = [...users];
     updated[editIndex] = editUser;
