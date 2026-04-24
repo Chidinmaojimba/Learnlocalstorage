@@ -23,6 +23,7 @@ import Dashboard from "./component/Dashboard";
 import Login from "./component/Login";
 import RegisteredUsers from "./component/RegisteredUsers";
 import CreateUser from "./component/CreateUser";
+ import Profile from "./component/Profile";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/registeredUsers" element={<RegisteredUsers />} /> 
         <Route path="/createUser" element={<CreateUser />} />
+        <Route path="/profile" element={<Profile />} />
 
       </Routes>
    

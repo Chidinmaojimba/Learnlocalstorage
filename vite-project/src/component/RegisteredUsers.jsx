@@ -1,6 +1,7 @@
 import "../styles/registeredUsers.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Navigation from "./Navigation";
 
 function RegisteredUsers() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function RegisteredUsers() {
     password: "",
   });
 
-  const loggedInUser = JSON.parse(localStorage.getItem("user"));
+     const loggedInUser = JSON.parse(localStorage.getItem("user"));
 
   
   const handleDelete = (index) => {
@@ -44,6 +45,7 @@ function RegisteredUsers() {
 
   return (
     <div className="container-RU">
+      <Navigation />
       <div className="card-RU">
         <h2>Registered Users</h2>
 
@@ -65,7 +67,7 @@ function RegisteredUsers() {
                   <>
                     <td>
                       <input
-                        value={editUser.name}
+                          value={editUser.name}
                         onChange={(e) =>
                           setEditUser({ ...editUser, name: e.target.value })
                         }

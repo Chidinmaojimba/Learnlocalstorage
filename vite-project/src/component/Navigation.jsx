@@ -8,7 +8,8 @@ function Navigation() {
       {user ? (
         <>
           <Link to="/dashboard">Dashboard</Link>
-          <Link to="/RegisteredUsers">Registered Users</Link>
+          <Link to="/registeredUsers">Registered Users</Link>
+           <Link to="/profile">Profile</Link>
         </>
       ) : (
         <>

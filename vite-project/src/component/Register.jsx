@@ -94,7 +94,7 @@ function Register() {
       <br />
 
       <button onClick={() => navigate("/login")}>
-        Go to Dashboard
+        Login to Dashboard
       </button>
     </div>
     </div>
