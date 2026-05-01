@@ -31,7 +31,7 @@ function Profile() {
 
    
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    const updatedUsers = users.map((u) =>
+    const updatedUsers = users.map((u) => 
       u.email === user.email ? user : u
     );
 
@@ -78,13 +78,13 @@ function Profile() {
           />
         </div>
 
-        <div className="form-row">
-          <input
-            type="number"
-            name="age"
-            placeholder="Age"
-            value={user.age || ""}
-            onChange={handleChange}
+          <div className="form-row">
+            <input
+              type="number"
+              name="age"
+              placeholder="Age"
+              value={user.age || ""}
+              onChange={handleChange}
           />
 
           <input

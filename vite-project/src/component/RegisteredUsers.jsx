@@ -16,18 +16,26 @@ function RegisteredUsers() {
     email: "",
     age: "",
     password: "",
+    status: "verified",
   });
 
-     const loggedInUser = JSON.parse(localStorage.getItem("user"));
+  const loggedInUser = JSON.parse(localStorage.getItem("user"));
 
   
   const handleDelete = (index) => {
-    const updated = users.filter((_, i) => i !== index);
+    const updated = [...users];
+
+    updated[index] = {
+      ...updated[index],
+      status: "deleted",
+    };
+
     setUsers(updated);
     localStorage.setItem("users", JSON.stringify(updated));
   };
 
- 
+
+  
   const handleEdit = (index) => {
     setEditIndex(index);
     setEditUser(users[index]);
@@ -46,6 +54,7 @@ function RegisteredUsers() {
   return (
     <div className="container-RU">
       <Navigation />
+
       <div className="card-RU">
         <h2>Registered Users</h2>
 
@@ -56,6 +65,7 @@ function RegisteredUsers() {
               <th>Email</th>
               <th>Age</th>
               <th>Password</th>
+              <th>Status</th> {/* ✅ NEW */}
               <th>Actions</th>
             </tr>
           </thead>
@@ -67,7 +77,7 @@ function RegisteredUsers() {
                   <>
                     <td>
                       <input
-                          value={editUser.name}
+                        value={editUser.name}
                         onChange={(e) =>
                           setEditUser({ ...editUser, name: e.target.value })
                         }
@@ -104,6 +114,8 @@ function RegisteredUsers() {
                       />
                     </td>
 
+                    <td>{editUser.status}</td>
+
                     <td>
                       <button className="save-btn" onClick={handleSave}>
                         Save
@@ -117,10 +129,21 @@ function RegisteredUsers() {
                     <td>{user.age}</td>
                     <td>{user.password}</td>
 
+                    <td
+                      className={
+                        user.status === "deleted"
+                          ? "deleted-text"
+                          : "verified-text"
+                      }
+                    >
+                      {user.status || "verified"}
+                    </td>
+
                     <td className="actions">
                       <button
                         className="edit-btn"
                         onClick={() => handleEdit(index)}
+                        disabled={user.status === "deleted"}
                       >
                         Edit
                       </button>
@@ -129,7 +152,7 @@ function RegisteredUsers() {
                         className="delete-btn"
                         onClick={() => handleDelete(index)}
                       >
-                        Delete
+                        Deactivate
                       </button>
                     </td>
                   </>
@@ -138,7 +161,6 @@ function RegisteredUsers() {
             ))}
           </tbody>
         </table>
-
 
         {loggedInUser && (
           <button

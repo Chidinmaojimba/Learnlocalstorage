@@ -1,22 +1,3 @@
-// import "./App.css"; 
-// import Login from "./component/Login";
- 
-// const App = () => {
-//     return ( 
-//     <>
-//     <Login/>
-//     </>
-//      );
-// }
- 
-// export default App;
-
-
-
-
-
-
-
 import { Routes, Route } from "react-router-dom";
 import Register from "./component/Register";
 import Dashboard from "./component/Dashboard";  

@@ -14,63 +14,67 @@ function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-   
-    if (  !email || !password) {
+    if (!email || !password) {
       setMessage("Fill all inputs");
       return;
     }
 
-    
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
-   
-    const foundUser = users.find(
-      (user) =>
-        user.email === email &&
-        user.password === password
-    );
+    const foundUser = users.find((user) => user.email === email);
 
-    if (foundUser) {        
-      localStorage.setItem("user", JSON.stringify(foundUser));
-      navigate("/dashboard");
-    } else {
-      setMessage("Input is invalid!!");
+    if (!foundUser) {
+      setMessage("User not found");
+      return;
     }
+
+    if (foundUser.status === "deleted") {
+      alert("This user has been deactivated");
+      return;
+    }
+
+    if (foundUser.password !== password) {
+      setMessage("Incorrect password");
+      return;
+    }
+
+    localStorage.setItem("user", JSON.stringify(foundUser));
+    navigate("/dashboard");
   };
 
   return (
-     <div className="container">
+    <div className="container">
       <Navigation />
-    <div className="card">
-      <h2>Login</h2>
 
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+      <div className="card">
+        <h2>Login</h2>
 
+        <form onSubmit={handleLogin}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <button type="submit">Login</button>
-      </form>
+          <button type="submit">Login</button>
+        </form>
 
-     
-      {message && <p>{message}</p>}
+       
+        {message && <p>{message}</p>}
 
-      <p>
-        Don't have an account?{" "}
-        <Link to="/">Sign Up</Link>
-      </p>
-    </div>
+        <p>
+          Don't have an account?{" "}
+          <Link to="/">Sign Up</Link>
+        </p>
+      </div>
     </div>
   );
 }
